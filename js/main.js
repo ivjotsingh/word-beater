@@ -40,10 +40,19 @@ const words = [
   ];
  
 function init(){
-
-    currentWord.innerHTML = 'hey'
+    showWord(words)
     setInterval(countdown, 1000)
+    setInterval(checkStatus, 50)
 };
+
+// Pick & show random word
+function showWord(words) {
+    // Generate random array index
+    const randIndex = Math.floor(Math.random() * words.length);
+    // Output random word
+    currentWord.innerHTML = words[randIndex];
+  }
+  
 
 function countdown() {
     // Make sure time is not run out
@@ -56,4 +65,12 @@ function countdown() {
     }
     // Show time
     timeDisplay.innerHTML = time;
+  }
+
+  // Check game status
+function checkStatus() {
+    if (!isPlaying && time === 0) {
+      message.innerHTML = 'Game Over!!!';
+      score = -1;
+    }
   }
